@@ -187,9 +187,3 @@ def test(env,agent,test_episodes=5,max_step=500):
     plt.show()
 
 
-
-
-class Critic(nn.Module):
-    def __init__(self,action_dim,state_dim):
-        super().__init__()
-        self.fc1=nn.Linear(action_dim,128)
