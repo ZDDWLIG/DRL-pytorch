@@ -33,4 +33,4 @@ If you want to test your model, then run:
   cd DQN
   python test.py
 ```
-![Lun GIF]([https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif](https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif)https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif)
+![Lun GIF](https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif)
