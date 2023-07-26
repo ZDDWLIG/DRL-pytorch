@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 path = os.getcwd()
 model_save_path = path + '/results/checkpoints/'
 env_name='LunarLander-v2'
-test_env=gym.make(env_name,render_mode='rgb_array')
+test_env=gym.make(env_name,render_mode='human')
 
 state_dim=len(test_env.observation_space.sample())
 action_dim=test_env.action_space.n
