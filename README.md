@@ -15,11 +15,21 @@ Use conda to manage the python environment:
   conda activate DRL-pytorch
   pip install -r requirements.txt
 ```
-# Run
+# Train
 
-If you want to use DQN, then run：
+If you want to train , then run：
 
 ```
   cd DQN
-  python DQN.py
+  python train.py
+```
+The checkpoints and logs can be found in `results`
+
+# Test
+
+If you want to test your model, then run:
+
+```
+  cd DQN
+  python test.py
 ```
