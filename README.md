@@ -17,7 +17,7 @@ Use conda to manage the python environment:
 ```
 # Train
 
-If you want to train , then run：
+For example, if you want to train DQN, then run：
 
 ```
   cd DQN
@@ -27,7 +27,7 @@ The checkpoints and logs can be found in `results`
 
 # Test
 
-If you want to test your model, then run:
+If you want to test DQN, then run:
 
 ```
   cd DQN
