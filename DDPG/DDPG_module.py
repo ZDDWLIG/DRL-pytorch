@@ -33,35 +33,6 @@ class ReplayBuffer():
 
 
 
-# class Actor(nn.Module):
-#     def __init__(self,action_dim,state_dim,max_action):
-#         super().__init__()
-#         self.mlp1=nn.Sequential(nn.Linear(state_dim,64),
-#                                 nn.ReLU(),nn.Linear(64,128),
-#                                 nn.ReLU(),nn.Linear(128,64),
-#                                 nn.ReLU(),nn.Linear(64,action_dim))
-#         self.max_action=max_action
-#     def forward(self,state):
-#         x=self.mlp1(state)
-#         return self.max_action*F.tanh(x)
-#
-# class Critic(nn.Module):
-#     def __init__(self,action_dim,state_dim):
-#         super().__init__()
-#         self.mlp1=nn.Sequential(nn.Linear(state_dim,64),
-#                                 nn.ReLU(),nn.Linear(64,128),
-#                                 nn.ReLU(),nn.Linear(128,64))
-#         self.mlp2=nn.Sequential(nn.Linear(action_dim,64),
-#                                 nn.ReLU(),nn.Linear(64,128),
-#                                 nn.ReLU(),nn.Linear(128,64))
-#         self.mlp3=nn.Sequential(nn.ReLU(),nn.Linear(128,1))
-#
-#     def forward(self,action,state):
-#         action1=self.mlp2(action)
-#         state1=self.mlp1(state)
-#         x=th.cat((state1,action1),dim=1)
-#         return self.mlp3(x)
-
 class Actor(nn.Module):
     def __init__(self,  action_dim,state_dim, max_action):
         super(Actor, self).__init__()
@@ -75,8 +46,6 @@ class Actor(nn.Module):
 class Critic(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(Critic, self).__init__()
-
-
         self.mlp=nn.Sequential(nn.Linear(state_dim + action_dim, 512),nn.ReLU(),nn.Linear(512,256),nn.ReLU(),nn.Linear(256,1))
     def forward(self, state, action):
         x = self.mlp(th.cat([state, action], dim=1))
