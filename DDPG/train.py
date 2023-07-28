@@ -5,8 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import os
-from stable_baselines3 import DDPG
-from DDPG_module import DDPG,train
+from module import DDPG,train
 import time
 
 env_name='Pendulum-v1'
