@@ -32,7 +32,7 @@ class Q_Net(nn.Module):
 
 class ReplayBuffer():
     def __init__(self,action_dim,mem_size,batch_size):
-        self.action_dim=action_dim
+        # self.action_dim=action_dim
         self.mem_size=mem_size
         self.batch_size=batch_size
         self.memory=deque(maxlen=self.mem_size)
@@ -83,6 +83,7 @@ class DQN():
         #build model
         self.eval_net=Q_Net(action_dim,state_dim).to(device)
         self.tar_net=Q_Net(action_dim,state_dim).to(device)
+        self.tar_net.load_state_dict(self.eval_net.state_dict())
         self.opt=optim.Adam(self.eval_net.parameters(),lr)
         self.loss=nn.MSELoss()
         #replay buffer
@@ -157,7 +158,7 @@ def train(env,agent,episodes=50000,save_inter=500,max_step=1000,epsilon_begin=1.
         if ep%save_inter==0:
             if not os.path.exists(model_save_path):
                 os.makedirs(model_save_path)
-            th.save(agent.eval_net.state_dict(),model_save_path+f'model_{4500+ep}.pth')
+            th.save(agent.eval_net.state_dict(),model_save_path+f'model_{ep}.pth')
             print('episode:{} average_score={}'.format(ep,score_avg))
         if len(score_list)>=100:
             if score_avg>=target_score:
@@ -169,21 +170,19 @@ def train(env,agent,episodes=50000,save_inter=500,max_step=1000,epsilon_begin=1.
         print('Episodes is too small, target is not achieved...')
 
 
-def test(env,agent,test_episodes=5,max_step=500):
-    score_list=[0]*max_step
+def test(env,agent,test_episodes=5,max_step=200):
+    score_list=[]
     for ep in range(test_episodes):
         state,_=env.reset()
+        score=0.
         for step in range(max_step):
             action=agent.action_sample(state,epsilon=0)
-            state,reward,done,info,_=env.step(action)
-            score_list[step]+=reward
-            if done :
+            next_state,reward,done,info,_=env.step(action)
+            state=next_state
+            score+=reward
+            if done:
                 break
-    env.close()
-    score_list=np.divide(np.array(score_list),test_episodes).tolist()
-    plt.plot([x for x in range(max_step)],score_list)
-    plt.xlabel('step')
-    plt.ylabel('avg_score')
-    plt.show()
-
+        score_list.append(score)
+        score_avg=np.mean(score_list[-100:])
+        print(score_avg)
 
