@@ -1,5 +1,5 @@
 # DRL-pytorch
-DQN, PPO, SAC...in pytorch for gym envs
+DQN, DDPG, PPO, SAC...in pytorch for gym envs
 # Installation
 Clone this repo:
 
