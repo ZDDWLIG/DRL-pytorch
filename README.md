@@ -34,4 +34,8 @@ If you want to test DQN, then run:
   python test.py
 ```
 ## Demo
-![Lun GIF](https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif)
+### LunarLander-v2
+![LunarLander-v2 GIF](https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Lun_over.gif)
+### Pendulum-v1
+![Pendulum-v1 GIF](https://github.com/ZDDWLIG/DRL-pytorch/blob/master/Pendulum-v1.gif)
+
