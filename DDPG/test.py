@@ -8,7 +8,7 @@ from random import random,choice,sample
 from collections import deque,namedtuple
 from torch.utils.tensorboard import SummaryWriter
 import os
-from DDPG_module import DDPG,test
+from module import DDPG,test
 from matplotlib import pyplot as plt
 path = os.getcwd()
 model_save_path = path + '/results/DDPG/checkpoints/'
